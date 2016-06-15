@@ -1,0 +1,50 @@
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	
+	sourceCompatibility = 1.8
+	version = '1.0'
+	jar {
+	    manifest {
+	        attributes 'Implementation-Title': 'Gradle Quickstart',
+	                   'Implementation-Version': version
+	    }
+	}
+	
+	repositories {
+	    mavenCentral()
+	}
+	
+	dependencies {
+	    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	    compile 'org.seleniumhq.selenium:selenium-java:2.52.+'
+	    compile group: 'io.appium', name: 'java-client', version: '3.4.1'
+	    compile 'org.apache.commons:commons-lang3:3.3.2'
+	    compile 'org.testng:testng:6.9.+'   //like added to build path
+	    compile 'javax.mail:mail:1.4.1' 
+	    compile 'org.apache.commons:commons-lang3:3.0' //for stringUtils
+	    compile 'ch.qos.logback:logback-classic:1.1.3'
+	    compile 'ch.qos.logback:logback-core:1.1.3'
+	    testCompile group: 'junit', name: 'junit', version: '4.+'
+	}
+	task getHomeDir << {
+    println gradle.gradleHomeDir
+   }
+	
+	test {
+	   test {
+	       options {
+              systemProperties(System.getProperties())  //no need to specify individual property with -D flag
+           }
+	       useTestNG() {
+	        suites 'src/test/resources/test_scripts/testng_Web_Calculator.xml'
+	       }
+	  }
+	}
+	
+	uploadArchives {
+	    repositories {
+	       flatDir {
+	           dirs 'repos'
+	       }
+	    }
+	}
