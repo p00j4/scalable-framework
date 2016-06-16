@@ -1,9 +1,13 @@
 package org.sma8learning.util;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -11,14 +15,12 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import ch.qos.logback.core.joran.conditional.Condition;
-
 public class UiUtils {
 	public RemoteWebDriver driver;
 	public DesiredCapabilities capabilities ;
 	public static final String SEPARATOR = " ";
 
-
+    public static String tcId = "";
 
 
 	public void sleep(int millis){
@@ -112,6 +114,24 @@ public class UiUtils {
 				return element != null && element.isDisplayed(); 
 			} 
 		}); 
+	}
+
+		
+	public static void captureScreenshot(WebDriver driver,String screenshotName)
+	{
+		try 
+		{
+			TakesScreenshot ts=(TakesScreenshot)driver;
+			File source=ts.getScreenshotAs(OutputType.FILE);
+			String path = "./build/screenshots/"+tcId+"_"+screenshotName+".png";
+			FileUtils.copyFile(source, new File(path));
+			System.out.println("Screenshot taken under"+ path);
+		} 
+		catch (Exception e)
+		{
+
+			System.out.println("Exception while taking screenshot "+e.getMessage());
+		} 
 	}
 
 }

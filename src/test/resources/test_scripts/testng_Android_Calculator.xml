@@ -2,7 +2,7 @@
 <suite name="Suite" parallel="false">
   <test name="Test">
     <classes>
-      <class name="com.sma8learning.tests.Test_Andorid_Calculator"/>
+      <class name="org.sma8learning.tests.Test_Andorid_Calculator"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sma8learning.util.BaseTest;
+import org.sma8learning.util.UiUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -27,7 +28,8 @@ public class Test_Web_Calculator extends BaseTest{
 
 	@Parameters({ "input1", "input2", "operator" })
 	@Test(dataProvider = "web_input")
-	public void testWeb_Calulator_One_digitNumbers(String input1, String input2, String operator) {
+	public void testWeb_Calulator(String tcId,String input1, String input2, String operator) {
+		this.tcId = tcId;
 		PageFactory.initElements(driver, Test_Web_Calculator.class);
 		click("id", input1);   //can write logic to support more input like more than 1 digits as per test case
 		click("id", operator);
@@ -56,10 +58,10 @@ public class Test_Web_Calculator extends BaseTest{
 	@DataProvider(name = "web_input")
 	public static Object[][] primeNumbers() {
 		return new Object[][] {
-				{"3", "7","+"}, 
-				{"6", "5","−"},
-				{"3", "9","×"},
-				{"8","2","÷"}
+				{"tc1_addition","3", "7","+"}, 
+				{"tc2_sutraction","6", "5","−"},
+				{"tc3_multiplication","3", "9","×"},
+				{"tc4_division","8","2","÷"}
 		};
 	}
 

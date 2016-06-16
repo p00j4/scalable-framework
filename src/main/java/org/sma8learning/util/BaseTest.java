@@ -16,7 +16,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
 public class BaseTest extends UiUtils{
@@ -59,10 +61,10 @@ public class BaseTest extends UiUtils{
 		case "ios":
 			capabilities.setCapability("app", "/Users/pooja/Documents/conf/apps/Calculator.app");
 			/*** TO Give From Flags instead **/
-//			capabilities.setCapability("platformName", "iOS");  works for 1.5.3
-//			capabilities.setCapability("deviceName", "iPhone 6s");
-//			capabilities.setCapability("platformVersion", "9.2");
-		
+			//			capabilities.setCapability("platformName", "iOS");  works for 1.5.3
+			//			capabilities.setCapability("deviceName", "iPhone 6s");
+			//			capabilities.setCapability("platformVersion", "9.2");
+
 			driver = new IOSDriver(new URL(IOS_SERVER), capabilities);
 			break;
 		}
@@ -104,6 +106,16 @@ public class BaseTest extends UiUtils{
 	}
 
 
+
+	@AfterMethod
+	public void tearDown(ITestResult result)
+	{
+		if(ITestResult.FAILURE==result.getStatus()){
+			captureScreenshot(driver, result.getMethod().getMethodName());
+		}
+	}
+	
+	
 	@AfterClass(alwaysRun = true)
 	public void suiteTearDown() {
 		driver.quit();

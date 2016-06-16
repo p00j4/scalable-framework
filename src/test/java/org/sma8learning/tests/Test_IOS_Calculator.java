@@ -16,7 +16,8 @@ public class Test_IOS_Calculator extends BaseTest {
 
 	@Parameters({ "input1", "input2", "operator" })
 	@Test(dataProvider = "inputs")
-	public void testIOS_Calulator_One_digitNumbers(String input1, String input2, String operator) {
+	public void testIOS_Calulator(String tcId,String input1, String input2, String operator) {
+		this.tcId = tcId;
 		PageFactory.initElements(driver, Test_IOS_Calculator.class);
 		click("name", input1);
 		click("name", operator);
@@ -41,7 +42,8 @@ public class Test_IOS_Calculator extends BaseTest {
 
 	@DataProvider(name = "inputs")
 	public static Object[][] primeNumbers() {
-		return new Object[][] {{"3", "7","+"},
-				{"6", "5","-"}};
+		return new Object[][] {
+				{"tc1_addition","3", "7","+"},
+				{"tc2_sutraction", "5","-"}};
 	}
 }

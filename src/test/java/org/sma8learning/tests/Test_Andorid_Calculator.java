@@ -26,7 +26,8 @@ public class Test_Andorid_Calculator extends BaseTest {
 
 	@Parameters({ "input1", "input2", "operator" })
 	@Test(dataProvider = "inputs")
-	public void testAndroid_Calulator_One_digitNumbers(String tcId,String input1, String input2, String operator) {
+	public void testAndroid_Calulator(String tcId,String input1, String input2, String operator) {
+		this.tcId = tcId;
 		PageFactory.initElements(driver, Test_Andorid_Calculator.class);
 		click("id", startDigitLocator+input1);
 		click("xpath", startOpLocator+operator+endOpLoactor);
@@ -52,10 +53,10 @@ public class Test_Andorid_Calculator extends BaseTest {
 	@DataProvider(name = "inputs")
 	public static Object[][] primeNumbers() {
 		return new Object[][] {
-				{"tc1","3", "7","+"},
-				{"tc2","6", "5","−"},
-				{"tc3","45","22","×"},
-				{"tc4","4","3","÷"}
+				{"tc1_addition","3", "7","+"},
+				{"tc2_sutraction","6", "5","−"},
+				{"tc3_multiplication","45","22","×"},
+				{"tc4_division","4","3","÷"}
 		};
 	}
 }
