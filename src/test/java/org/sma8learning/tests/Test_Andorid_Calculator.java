@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sma8learning.util.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -20,9 +21,6 @@ public class Test_Andorid_Calculator extends BaseTest {
 	@FindBy(id="com.android2.calculator3:id/formula")
 	public static WebElement resultTextField; 
 
-
-
-	//android.widget.RelativeLayout[1]/android.widget.FrameLayout[1]
 	String startDigitLocator = "com.android2.calculator3:id/digit_";
 	String startOpLocator = "//android.widget.Button[@text='";
 	String endOpLoactor = "']";
@@ -31,9 +29,9 @@ public class Test_Andorid_Calculator extends BaseTest {
 	@Parameters({ "input1", "input2", "operator" })
 	@Test(dataProvider = "inputs")
 	public void testAndroid_Calulator(String tcId,String input1, String input2, String operator) {
-		PageFactory.initElements(driver, Test_Andorid_Calculator.class);
+		load();
 		this.tcId = tcId;
-		
+
 		reset(); 
 		calculate(input1, input2, operator);
 		validate(input1, input2, operator);
@@ -45,6 +43,12 @@ public class Test_Andorid_Calculator extends BaseTest {
 
 	// TO add more test functions to test for more calculations to support nth digit numbers
 
+
+	@BeforeTest
+	private void load(){
+		PageFactory.initElements(driver, Test_Andorid_Calculator.class);
+	}
+
 	private void reset(){
 		clearBtn.click();
 	}
@@ -54,18 +58,19 @@ public class Test_Andorid_Calculator extends BaseTest {
 		click("xpath", startOpLocator+operator+endOpLoactor);
 		click("id", startDigitLocator+input2);
 		equalTo.click();
-
 	}
 
-	private void  validate(String input1, String input2, String operator){
+	private void validate(String input1, String input2, String operator){
 		logger.debug(tcId+":: performing operation");
-		double actualResult = Integer.parseInt(resultTextField.getText());
+		double actualResult = Double.parseDouble(resultTextField.getText());
 		double expectedResult = getExpectedResult(input1, input2, operator);
 
 		logger.debug(tcId+":: actual result="+actualResult);
 		logger.debug(tcId+":: expected result="+expectedResult);
 		Assert.assertEquals(actualResult,expectedResult);
 	}
+
+
 	@DataProvider(name = "inputs")
 	public static Object[][] primeNumbers() {
 		return new Object[][] {

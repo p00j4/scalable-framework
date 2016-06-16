@@ -54,7 +54,7 @@ public class Test_Web_Calculator extends BaseTest{
 	public void validate(String input1, String input2, String operator){
 		LOG.info("performing operation"+SEPARATOR+input1+operator+input2);
 		sleep(500);  //work around for chrome -> viewport is not ready, so throws staleException
-		double actualResult = Float.parseFloat(resultTextField.getAttribute("value"));
+		double actualResult = Double.parseDouble(resultTextField.getAttribute("value"));
 		double expectedResult = getExpectedResult(input1, input2, operator);
 
 		LOG.debug("actual result="+SEPARATOR+actualResult);
