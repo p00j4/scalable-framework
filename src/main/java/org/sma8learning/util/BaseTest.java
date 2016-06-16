@@ -27,14 +27,15 @@ public class BaseTest extends UiUtils{
 	protected final String WEB_SERVER = System.getProperty("WEB_SERVER", "http://127.0.0.1:8000/");
 	protected final String IOS_SERVER = System.getProperty("IOS_SERVER", "http://0.0.0.0:4723/wd/hub");
 	protected final String ANDROID_SERVER = System.getProperty("ANDROID_SERVER", "http://0.0.0.0:4724/wd/hub");
-	protected final String client = System.getProperty("client", "ios");
+	protected final String client = System.getProperty("client", "firefox");
 
 	private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
 	private static ChromeDriverService service;
 	@BeforeSuite
 	public WebDriver getDriver() throws MalformedURLException {
 		capabilities =  new DesiredCapabilities();
-		switch(client){
+		System.out.println("****************** Going to Launch="+client);
+		switch(client.toLowerCase()){
 		case "firefox":
 			driver = new FirefoxDriver();
 			maximise();
@@ -57,7 +58,12 @@ public class BaseTest extends UiUtils{
 			driver.manage().window().setSize(dimension);
 			break;
 		case "android":
+			capabilities.setCapability("platformVersion", "4.4");
+			capabilities.setCapability("platformName", "Android");
+			capabilities.setCapability("deviceName", "Android");
+			capabilities.setCapability("app", "/Users/pooja/Documents/conf/apps/Calculator.apk");
 			driver = new AndroidDriver(new URL(ANDROID_SERVER), capabilities);
+			break;
 		case "ios":
 			capabilities.setCapability("app", "/Users/pooja/Documents/conf/apps/Calculator.app");
 			/*** TO Give From Flags instead **/

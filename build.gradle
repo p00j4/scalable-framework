@@ -37,9 +37,10 @@
            }
            String testXml = System.getProperty("test")
            testXml = (testXml==null)?"":testXml.toLowerCase()
-           
+           String testCasePath = 'src/test/resources/test_scripts/testng_'+testXml+'.xml'
+           println '************ Executing Test ='+testCasePath
 	       useTestNG() {
-	        suites 'src/test/resources/test_scripts/testng_'+testXml+'.xml'
+	        suites testCasePath
 	       }
 	  }
 	}
