@@ -44,6 +44,6 @@ public class Test_IOS_Calculator extends BaseTest {
 	public static Object[][] primeNumbers() {
 		return new Object[][] {
 				{"tc1_addition","3", "7","+"},
-				{"tc2_sutraction", "5","-"}};
+				{"tc2_sutraction", "5","1","-"}};
 	}
 }

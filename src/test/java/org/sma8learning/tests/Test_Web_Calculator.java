@@ -22,7 +22,7 @@ public class Test_Web_Calculator extends BaseTest{
 
 	@FindBy(id="result")
 	public static WebElement resultTextField; //TO CHECK::pagefactory with RemoteWebDriver somehow working only for static elements
-	
+
 	@FindBy(name="clear")
 	public static WebElement clearField;
 
@@ -30,12 +30,28 @@ public class Test_Web_Calculator extends BaseTest{
 	@Test(dataProvider = "web_input")
 	public void testWeb_Calulator(String tcId,String input1, String input2, String operator) {
 		this.tcId = tcId;
+		reset();
+		calculate(input1, input2, operator);
+		validate(input1, input2, operator);
+		LOG.info("-------------- Web Calculator TEST PASSED for "+client+" ----------------------");
+	}
+	
+	
+	@BeforeTest
+	public void openPage(){
 		PageFactory.initElements(driver, Test_Web_Calculator.class);
+		driver.get(WEB_SERVER);
+	}
+
+
+	public void calculate(String input1, String input2, String operator){
 		click("id", input1);   //can write logic to support more input like more than 1 digits as per test case
 		click("id", operator);
 		click("id", input2);
 		equalTo.click();
+	}
 
+	public void validate(String input1, String input2, String operator){
 		LOG.info("performing operation"+SEPARATOR+input1+operator+input2);
 		sleep(500);  //work around for chrome -> viewport is not ready, so throws staleException
 		double actualResult = Float.parseFloat(resultTextField.getAttribute("value"));
@@ -44,16 +60,9 @@ public class Test_Web_Calculator extends BaseTest{
 		LOG.debug("actual result="+SEPARATOR+actualResult);
 		LOG.debug("expected result="+SEPARATOR+expectedResult);
 		Assert.assertEquals(actualResult,expectedResult);
-		LOG.info("-------------- Web Calculator TEST PASSED for "+client+" ----------------------");
-		clearField.click();
-
 	}
 
 
-	@BeforeTest
-	public void openPage(){
-		driver.get(WEB_SERVER);
-	}
 
 	@DataProvider(name = "web_input")
 	public static Object[][] primeNumbers() {
@@ -63,6 +72,10 @@ public class Test_Web_Calculator extends BaseTest{
 				{"tc3_multiplication","3", "9","×"},
 				{"tc4_division","8","2","÷"}
 		};
+	}
+
+	void reset(){
+		clearField.click();
 	}
 
 }
