@@ -37,6 +37,7 @@ public class BaseTest extends UiUtils{
 		System.out.println("****************** Going to Launch="+client);
 		switch(client.toLowerCase()){
 		case "firefox":
+		case "ff":
 			driver = new FirefoxDriver();
 			maximise();
 			break;
@@ -65,11 +66,11 @@ public class BaseTest extends UiUtils{
 			driver = new AndroidDriver(new URL(ANDROID_SERVER), capabilities);
 			break;
 		case "ios":
-			capabilities.setCapability("app", "/Users/pooja/Documents/conf/apps/Calculator.app");
 			/*** TO Give From Flags instead **/
-			//			capabilities.setCapability("platformName", "iOS");  works for 1.5.3
+			//			capabilities.setCapability("platformName", "iOS"); works with 1.5.3
 			//			capabilities.setCapability("deviceName", "iPhone 6s");
 			//			capabilities.setCapability("platformVersion", "9.2");
+			capabilities.setCapability("app", "/Users/pooja/Documents/conf/apps/Calculator.app");
 
 			driver = new IOSDriver(new URL(IOS_SERVER), capabilities);
 			break;
@@ -120,8 +121,8 @@ public class BaseTest extends UiUtils{
 			captureScreenshot(driver, result.getMethod().getMethodName());
 		}
 	}
-	
-	
+
+
 	@AfterClass(alwaysRun = true)
 	public void suiteTearDown() {
 		driver.quit();
