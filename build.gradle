@@ -35,8 +35,11 @@
 	       options {
               systemProperties(System.getProperties())  //no need to specify individual property with -D flag
            }
+           String testXml = System.getProperty("test")
+           testXml = (testXml==null)?"":testXml.toLowerCase()
+           
 	       useTestNG() {
-	        suites 'src/test/resources/test_scripts/testng_Web_Calculator.xml'
+	        suites 'src/test/resources/test_scripts/testng_'+testXml+'.xml'
 	       }
 	  }
 	}
