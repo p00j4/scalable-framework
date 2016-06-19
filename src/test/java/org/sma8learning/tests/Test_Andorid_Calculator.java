@@ -77,7 +77,7 @@ public class Test_Andorid_Calculator extends BaseTest {
 				{"tc1_addition","3", "7","+"},
 				{"tc2_sutraction","6", "5","−"},
 				{"tc3_multiplication","4","9","×"},
-				{"tc4_division","4","3","÷"}
+//				{"tc4_division","4","3","÷"}
 		};
 	}
 }
