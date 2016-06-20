@@ -22,19 +22,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
 public class BaseTest extends UiUtils{
-
+	private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
 	public static String PATH_DRIVER_CHROME ="src/main/resources/drivers/chromedriver_2.22"; //works with  chrome 51.0.2704.103 
 	protected final String WEB_SERVER = System.getProperty("WEB_SERVER", "http://127.0.0.1:8000/");
 	protected final String IOS_SERVER = System.getProperty("IOS_SERVER", "http://0.0.0.0:4723/wd/hub");
 	protected final String ANDROID_SERVER = System.getProperty("ANDROID_SERVER", "http://0.0.0.0:4724/wd/hub");
 	protected final String client = System.getProperty("client", "firefox");
-
-	private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
 	private static ChromeDriverService service;
+	
+	
+	
 	@BeforeSuite
 	public WebDriver getDriver() throws MalformedURLException {
 		capabilities =  new DesiredCapabilities();
-		System.out.println("****************** Going to Launch="+client);
+		LOG.info("****************** Launching"+client +" ******************");
 		switch(client.toLowerCase()){
 		case "firefox":
 		case "ff":
@@ -66,12 +67,11 @@ public class BaseTest extends UiUtils{
 			driver = new AndroidDriver(new URL(ANDROID_SERVER), capabilities);
 			break;
 		case "ios":
-			/*** TO Give From Flags instead **/
+			/*** For better management, Giving from Flags  while running from source**/
 			//			capabilities.setCapability("platformName", "iOS"); works with 1.5.3
 			//			capabilities.setCapability("deviceName", "iPhone 6s");
 			//			capabilities.setCapability("platformVersion", "9.2");
 			capabilities.setCapability("app", "/Users/pooja/Documents/conf/apps/Calculator.app");
-
 			driver = new IOSDriver(new URL(IOS_SERVER), capabilities);
 			break;
 		}
@@ -84,6 +84,13 @@ public class BaseTest extends UiUtils{
 
 
 
+	/**
+	 * get calendar calculation expected result
+	 * @param in1
+	 * @param in2
+	 * @param operator
+	 * @return
+	 */
 	public double getExpectedResult(String in1, String in2, String operator) {
 		double input1 = Double.parseDouble(in1);
 		double input2 = Double.parseDouble(in2);
