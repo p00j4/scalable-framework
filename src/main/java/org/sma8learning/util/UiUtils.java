@@ -23,7 +23,11 @@ public class UiUtils {
     public static String tcId = "";
 
 
-	public void sleep(int millis){
+    /**
+     * BAD way, rather use explicit wait- waitForElementPresent(By, time)
+     * @param millis
+     */
+	public void deadSleep(int millis){
 		try {
 			Thread.sleep(millis);
 		} catch (InterruptedException e) {
@@ -104,6 +108,11 @@ public class UiUtils {
 	}
 
 
+	/**
+	 * wait for a element to be displayed precisely and reliably for given time
+	 * @param by
+	 * @param timeout
+	 */
 	public void waitForElementPresent(final By by, int timeout){ 
 		WebDriverWait wait = (WebDriverWait)new WebDriverWait(driver,timeout)
 		.ignoring(StaleElementReferenceException.class); 

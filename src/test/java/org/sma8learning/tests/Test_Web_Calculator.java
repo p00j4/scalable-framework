@@ -1,5 +1,6 @@
 package org.sma8learning.tests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -22,7 +23,10 @@ public class Test_Web_Calculator extends BaseTest{
 
 	@FindBy(id="result")
 	public static WebElement resultTextField; //TO CHECK::pagefactory with RemoteWebDriver somehow working only for static elements
-
+    
+	public static By resultTextFieldBy = By.id("result");
+	
+	
 	@FindBy(name="clear")
 	public static WebElement clearField;
 
@@ -53,7 +57,7 @@ public class Test_Web_Calculator extends BaseTest{
 
 	public void validate(String input1, String input2, String operator){
 		LOG.info("performing operation"+SEPARATOR+input1+operator+input2);
-		sleep(500);  //work around for chrome -> viewport is not ready, so throws staleException
+		waitForElementPresent(resultTextFieldBy, 1000);//work around for chrome -> viewport is not ready, so throws staleException
 		double actualResult = Double.parseDouble(resultTextField.getAttribute("value"));
 		double expectedResult = getExpectedResult(input1, input2, operator);
 
