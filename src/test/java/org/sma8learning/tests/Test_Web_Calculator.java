@@ -19,16 +19,13 @@ public class Test_Web_Calculator extends BaseTest{
 
 
 	@FindBy(name="=")
-	public static WebElement equalTo; //pagefactory with iosdriver somehow working only for static elements
-
-	@FindBy(id="result")
-	public static WebElement resultTextField; //TO CHECK::pagefactory with RemoteWebDriver somehow working only for static elements
-    
-	public static By resultTextFieldBy = By.id("result");
-	
-	
+	public static WebElement equalTo;
 	@FindBy(name="clear")
 	public static WebElement clearField;
+	@FindBy(id="result")
+	public static WebElement resultTextField; //TO CHECK and work-around:: working only for static elements in this design
+    public static By resultTextFieldBy = By.id("result");
+	
 
 	@Parameters({ "input1", "input2", "operator" })
 	@Test(dataProvider = "web_input")

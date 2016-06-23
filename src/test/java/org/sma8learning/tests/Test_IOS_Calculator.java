@@ -13,7 +13,7 @@ public class Test_IOS_Calculator extends BaseTest {
 
 
 	@FindBy(name="=")
-	public static WebElement equalTo; //pagefactory with iosdriver somehow working only for static elements
+	public static WebElement equalTo; //TO CHECK and work-around:: working only for static elements in this design
 
 	@Parameters({ "input1", "input2", "operator" })
 	@Test(dataProvider = "inputs")

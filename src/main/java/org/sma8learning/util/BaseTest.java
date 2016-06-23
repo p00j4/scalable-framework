@@ -20,6 +20,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 public class BaseTest extends UiUtils{
 	private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
@@ -31,9 +32,9 @@ public class BaseTest extends UiUtils{
 	private static ChromeDriverService service;
 	
 	
-	
+	@Parameters({"client"})
 	@BeforeSuite
-	public WebDriver getDriver() throws MalformedURLException {
+	public WebDriver getDriver(String client) throws MalformedURLException {
 		capabilities =  new DesiredCapabilities();
 		LOG.info("****************** Launching"+client +" ******************");
 		switch(client.toLowerCase()){

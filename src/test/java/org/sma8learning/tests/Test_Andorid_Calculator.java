@@ -38,6 +38,17 @@ public class Test_Andorid_Calculator extends BaseTest {
 		logger.info(tcId+":: -------------- Android Calculator TEST PASSED -----------");
 
 	}
+	
+	private void validate(String input1, String input2, String operator){
+		logger.debug(tcId+":: performing operation");
+		double actualResult = Double.parseDouble(resultTextField.getText());
+		double expectedResult = getExpectedResult(input1, input2, operator);
+
+		logger.debug(tcId+":: actual result="+actualResult);
+		logger.debug(tcId+":: expected result="+expectedResult);
+		Assert.assertEquals(actualResult,expectedResult);
+	}
+
 
 
 
@@ -48,6 +59,21 @@ public class Test_Andorid_Calculator extends BaseTest {
 	private void load(){
 		PageFactory.initElements(driver, Test_Andorid_Calculator.class);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/***************** Implementation : To Do:: separate it out more from this class*********/
 
 	private void reset(){
 		clearBtn.click();
@@ -58,16 +84,6 @@ public class Test_Andorid_Calculator extends BaseTest {
 		click("xpath", startOpLocator+operator+endOpLoactor);
 		click("id", startDigitLocator+input2);
 		equalTo.click();
-	}
-
-	private void validate(String input1, String input2, String operator){
-		logger.debug(tcId+":: performing operation");
-		double actualResult = Double.parseDouble(resultTextField.getText());
-		double expectedResult = getExpectedResult(input1, input2, operator);
-
-		logger.debug(tcId+":: actual result="+actualResult);
-		logger.debug(tcId+":: expected result="+expectedResult);
-		Assert.assertEquals(actualResult,expectedResult);
 	}
 
 

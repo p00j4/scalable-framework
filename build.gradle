@@ -42,14 +42,8 @@
            println '************ Executing Test ='+testCasePath
 	       useTestNG() {
 	        suites testCasePath
-	       }
+	       } 
 	  }
 	}
 	
-	uploadArchives {
-	    repositories {
-	       flatDir {
-	           dirs 'repos'
-	       }
-	    }
-	}
+
