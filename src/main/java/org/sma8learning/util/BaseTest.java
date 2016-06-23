@@ -56,8 +56,17 @@ public class BaseTest extends UiUtils{
 			}
 			driver = new RemoteWebDriver(service.getUrl(),
 					DesiredCapabilities.chrome());
-			Dimension dimension = new Dimension(1224,800);  //Best Resolution works for firefox with 1400*1200*16 xvfb
-			driver.manage().window().setSize(dimension);
+			
+			
+		
+//			Dimension dimension3 = new Dimension(1024 ,720);  //Best Resolution works for firefox with 1400*1200*16 xvfb
+//			driver.manage().window().setSize(dimension3);
+//			
+//			Dimension dimension1 = new Dimension(1224,800);  //Best Resolution works for firefox with 1400*1200*16 xvfb
+//			driver.manage().window().setSize(dimension1);
+			
+			
+			
 			break;
 		case "android":
 			capabilities.setCapability("platformVersion", "4.4");
