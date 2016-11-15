@@ -23,7 +23,7 @@ import org.testng.annotations.BeforeSuite;
 
 public class BaseTest extends UiUtils{
 	private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
-	public static String PATH_DRIVER_CHROME ="src/main/resources/drivers/chromedriver_2.22"; //works with  chrome 51.0.2704.103 
+	public static String PATH_DRIVER_CHROME ="src/main/resources/drivers/chromedriver_2.25"; //works with  chrome 51.0.2704.103 
 	protected final String WEB_SERVER = System.getProperty("WEB_SERVER", "http://127.0.0.1:8000/");
 	protected final String IOS_SERVER = System.getProperty("IOS_SERVER", "http://0.0.0.0:4723/wd/hub");
 	protected final String ANDROID_SERVER = System.getProperty("ANDROID_SERVER", "http://0.0.0.0:4724/wd/hub");
