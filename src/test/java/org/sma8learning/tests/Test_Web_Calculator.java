@@ -74,7 +74,7 @@ public class Test_Web_Calculator extends BaseTest{
 				{"tc1_addition","3", "7","+"}, 
 				{"tc2_sutraction","6", "5","−"},
 				{"tc3_multiplication","3", "9","×"},
-				{"tc4_division","7","2","÷"}
+				{"tc4_division","8","2","÷"}
 		};
 	}
 
