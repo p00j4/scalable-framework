@@ -64,6 +64,10 @@ public class Test_Web_Calculator extends BaseTest{
 		LOG.debug("actual result="+SEPARATOR+actualResult);
 		LOG.debug("expected result="+SEPARATOR+expectedResult);
 		Assert.assertEquals(actualResult,expectedResult);
+		if(client.equalTo("chrome")){
+			LOG.debug("chrome browser with ::::");
+			Assert.assertEquals(actualResult,expectedResult+0.00000);
+		}
 	}
 
 
