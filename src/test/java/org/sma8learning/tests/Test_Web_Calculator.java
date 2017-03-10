@@ -67,7 +67,8 @@ public class Test_Web_Calculator extends BaseTest{
 		if(client.equals("chrome")){
 			LOG.debug("chrome browser with :: actualResult="+actualResult+" expected result=");
 			if(operator.equals("÷")){
-				Assert.assertEquals(actualResult,4.00);
+				LOG.debug("operator is ÷, so false failing");
+				Assert.assertEquals(actualResult,4.00000);
 			}
 
 		}
