@@ -2,5 +2,7 @@ class NewFile{
 /**
 
 */
+  
+  // new line
 
 }
