@@ -1,0 +1,8 @@
+class NewFile{
+/**
+
+*/
+  
+  // new line
+
+}
