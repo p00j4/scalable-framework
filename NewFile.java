@@ -3,6 +3,6 @@ class NewFile{
 
 */
   
-  //removing lines
-
+  // new line 1
+  // new line 2
 }
